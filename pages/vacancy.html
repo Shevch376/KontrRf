@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Подробное описание специальности контрактной службы">
+  <title>Описание вакансии</title>
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <script src="../assets/js/app.js" defer></script>
+  <script src="../assets/js/vacancies.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-shell">
+      <a class="brand" href="../index.html"><span class="brand-mark">К</span><span class="brand-name">Контрактная<br>служба</span></a>
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+      <nav class="main-nav" id="main-nav"><a href="terms.html">Условия</a><a href="../index.html#directions">Направления</a><div class="nav-dropdown"><button class="nav-dropdown-toggle" type="button">Вакансии <span>⌄</span></button><div class="nav-dropdown-menu"><a href="vacancies.html">Все вакансии</a><a href="vacancies.html#frontline">На передовой</a><a href="vacancies.html#rear">В тылу</a><a href="vacancies.html#women">Для женщин</a></div></div><a href="../index.html#faq">Вопросы</a></nav>
+      <div class="header-actions"><a class="button button-light" href="../index.html#application">Подать заявку</a></div>
+    </div>
+  </header>
+  <main class="vacancy-detail" id="vacancy-detail" hidden>
+    <section class="vacancy-hero">
+      <div class="container">
+        <div class="breadcrumbs"><a href="../index.html">Главная</a><span>—</span><a href="vacancies.html">Вакансии</a><span>—</span><span id="vacancy-breadcrumb"></span></div>
+        <div class="vacancy-hero-grid">
+          <div><p class="eyebrow" id="vacancy-category"></p><h1 id="vacancy-title"></h1><p class="vacancy-summary" id="vacancy-summary"></p><a class="button button-primary button-large" href="../index.html#application">Узнать о наличии</a></div>
+          <div class="vacancy-facts"><article><span>Возраст</span><strong>18–63 года</strong></article><article><span>Оформление</span><strong>После отбора</strong></article><article><span>Подготовка</span><strong>По специальности</strong></article></div>
+        </div>
+      </div>
+    </section>
+    <section class="vacancy-detail-body">
+      <div class="container vacancy-detail-layout">
+        <article class="vacancy-article">
+          <section><p class="eyebrow">О специальности</p><h2>Основные задачи</h2><p id="vacancy-intro"></p><ul id="vacancy-duties"></ul></section>
+          <section><p class="eyebrow">Отбор</p><h2>Требования к кандидату</h2><ul id="vacancy-requirements"></ul></section>
+          <section><p class="eyebrow">До назначения</p><h2>Подготовка и допуск</h2><p id="vacancy-training"></p></section>
+          <section><p class="eyebrow">Условия</p><h2>Обеспечение и гарантии</h2><p>Должность, место службы, размер денежного довольствия и доступные меры поддержки определяются при оформлении с учётом назначения и действующих нормативных актов. Конкретные суммы и условия необходимо подтвердить до подписания документов.</p><div class="detail-note">Военнослужащему предоставляется установленное обеспечение, медицинская помощь и предусмотренные законом социальные гарантии. Их состав зависит от статуса и условий прохождения службы.</div></section>
+          <section><p class="eyebrow">Порядок оформления</p><h2>Как проходит отбор</h2><ol class="detail-steps"><li><strong>Заявка и консультация</strong><span>Уточняются документы, опыт и интересующая специальность.</span></li><li><strong>Проверка и комиссия</strong><span>Проводятся обязательные процедуры и оценка пригодности.</span></li><li><strong>Подготовка</strong><span>Объём обучения зависит от должности и имеющейся квалификации.</span></li><li><strong>Назначение</strong><span>Итоговая должность закрепляется официальными документами.</span></li></ol></section>
+          <section><p class="eyebrow">Важно знать</p><h2>Ответы на вопросы</h2><div class="accordion" id="vacancy-faq"></div></section>
+        </article>
+        <aside class="vacancy-sidebar"><div class="vacancy-side-card"><p class="eyebrow light">Актуальность вакансии</p><h2>Назначение подтверждается после отбора</h2><p>Наличие должности и точные требования зависят от текущей потребности подразделений.</p><a class="button button-light" href="../index.html#application">Оставить заявку</a></div><a class="vacancy-back" href="vacancies.html">← Все вакансии</a></aside>
+      </div>
+    </section>
+  </main>
+  <main class="inner-page" id="vacancy-not-found" hidden><section class="inner-header"><div class="container"><h1>Вакансия не найдена</h1><p>Вернитесь к общему списку и выберите специальность.</p><a class="button button-primary" href="vacancies.html">Все вакансии</a></div></section></main>
+  <footer class="simple-footer"><div class="container"><span>© <span data-current-year></span>. Информационный сайт</span><a href="privacy.html">Политика конфиденциальности</a></div></footer>
+</body>
+</html>

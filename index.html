@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#1668bd">
   <title>Контрактная служба — условия и вакансии</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/photo-review-active.css">
   <script src="assets/js/app.js" defer></script>
 </head>
 <body>
@@ -24,9 +25,17 @@
       </button>
 
       <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
-        <a href="#terms">Условия</a>
+        <a href="pages/terms.html">Условия</a>
         <a href="#directions">Направления</a>
-        <a href="#vacancies">Вакансии</a>
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-toggle" type="button" aria-expanded="false">Вакансии <span>⌄</span></button>
+          <div class="nav-dropdown-menu">
+            <a href="pages/vacancies.html">Все вакансии</a>
+            <a href="pages/vacancies.html#frontline">На передовой</a>
+            <a href="pages/vacancies.html#rear">В тылу</a>
+            <a href="pages/vacancies.html#women">Для женщин</a>
+          </div>
+        </div>
         <a href="#faq">Вопросы</a>
       </nav>
 
@@ -46,7 +55,7 @@
       <div class="container hero-content">
         <div class="hero-copy">
           <p class="eyebrow">Контрактная служба</p>
-          <h1 id="hero-title">Контракт<br>с Минобороны<br>на СВО</h1>
+          <h1 id="hero-title"><span>Контракт</span><span>с Минобороны</span><span>на СВО</span></h1>
           <p class="hero-lead">Узнайте об условиях, доступных направлениях и этапах оформления в одном месте.</p>
           <a class="button button-primary button-large" href="#application">Подать заявку</a>
         </div>
@@ -95,9 +104,9 @@
         </div>
 
         <div class="terms-grid" id="terms">
-          <article><span class="term-icon">₽</span><h3>Выплаты</h3><ul><li>Федеральные и региональные единовременные выплаты</li><li>Ежемесячное денежное довольствие</li><li>Доплаты в зависимости от задач и условий</li></ul></article>
-          <article><span class="term-icon">★</span><h3>Доплаты</h3><ul><li>Премирование за выполнение отдельных задач</li><li>Выплаты при ранении в установленных случаях</li><li>Меры поддержки для участников службы</li></ul></article>
-          <article><span class="term-icon">✓</span><h3>Льготы</h3><ul><li>Статус ветерана при наличии оснований</li><li>Медицинское обеспечение</li><li>Социальные гарантии военнослужащим и семьям</li></ul></article>
+          <article><span class="term-icon">₽</span><h3>Выплаты</h3><ul><li>Федеральные и региональные выплаты при оформлении</li><li>Ежемесячное денежное довольствие по должности и званию</li><li>Доплаты за отдельные задачи и условия службы</li></ul></article>
+          <article><span class="term-icon">★</span><h3>Доплаты</h3><ul><li>Премирование в предусмотренных нормативными актами случаях</li><li>Страховые и иные выплаты при наличии оснований</li><li>Отдельные региональные меры поддержки</li></ul></article>
+          <article><span class="term-icon">✓</span><h3>Льготы</h3><ul><li>Статус ветерана боевых действий при наличии оснований</li><li>Медицинское обеспечение и предусмотренная реабилитация</li><li>Социальные гарантии военнослужащим и членам их семей</li></ul></article>
         </div>
         <p class="legal-note">Точный размер выплат и перечень льгот зависят от региона, должности и действующих нормативных актов. Итоговые условия уточняются до оформления.</p>
       </div>
@@ -129,12 +138,13 @@
         <div class="eligibility-copy">
           <ul class="check-list">
             <li>Кандидаты в возрасте от 18 до 63 лет</li>
-            <li>Образование не ниже установленного минимума</li>
-            <li>Соответствие требованиям по здоровью</li>
+            <li>Образование и квалификация, подходящие для выбранной должности</li>
+            <li>Знание русского языка в объёме, необходимом для службы</li>
+            <li>Соответствие требованиям по здоровью и профессиональному отбору</li>
             <li>Отсутствие действующего контракта с Минобороны</li>
             <li>Индивидуальное рассмотрение судимости и иных обстоятельств</li>
           </ul>
-          <div class="contract-term"><span>Срок контракта</span><strong>от 1 года</strong><p>Конкретный срок и условия закрепляются в документах до подписания.</p></div>
+          <div class="contract-term"><span>Срок контракта</span><strong>обычно 1–3 года</strong><p>Точный срок, должность и остальные условия должны быть указаны в документах до подписания.</p></div>
         </div>
       </div>
     </section>
@@ -176,38 +186,38 @@
         </div>
 
         <div class="vacancy-group" id="frontline">
-          <div class="vacancy-group-copy"><p class="eyebrow">Передовая</p><h3>Боевые и технические специальности</h3><p>Работа в подразделениях с обязательной подготовкой перед направлением. Итоговая специальность определяется с учётом навыков, состояния здоровья и текущей потребности.</p></div>
+          <div class="vacancy-group-copy"><p class="eyebrow">Передовая</p><h3>Боевые и технические специальности</h3><p>Работа связана с выполнением задач в составе подразделения. В этом направлении требуются водители, операторы беспилотных комплексов, специалисты инженерного профиля, разведчики, танкисты, стрелки и младшие командиры.</p><p>Перед назначением кандидат проходит обязательный отбор и подготовку. Итоговая должность определяется с учётом навыков, состояния здоровья, результатов обучения и текущей потребности.</p></div>
           <div class="job-grid" data-category="frontline">
-            <article class="job-card"><div class="job-image job-driver"><span>В</span></div><h4>Водитель</h4><button type="button" data-job="Водитель">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-drone"><span>БПЛА</span></div><h4>Оператор БПЛА</h4><button type="button" data-job="Оператор БПЛА">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-engineer"><span>И</span></div><h4>Сапёр</h4><button type="button" data-job="Сапёр">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-sniper"><span>С</span></div><h4>Снайпер</h4><button type="button" data-job="Снайпер">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-scout"><span>Р</span></div><h4>Разведчик</h4><button type="button" data-job="Разведчик">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-tank"><span>Т</span></div><h4>Танкист</h4><button type="button" data-job="Танкист">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-shooter"><span>С</span></div><h4>Стрелок</h4><button type="button" data-job="Стрелок">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-command"><span>К</span></div><h4>Командир отделения</h4><button type="button" data-job="Командир отделения">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-driver"><span>В</span></div><h4>Водитель</h4><button type="button" data-job="Водитель" data-slug="driver">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-drone"><span>БПЛА</span></div><h4>Оператор БПЛА</h4><button type="button" data-job="Оператор БПЛА" data-slug="drone-operator">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-engineer"><span>И</span></div><h4>Сапёр</h4><button type="button" data-job="Сапёр" data-slug="sapper">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-sniper"><span>С</span></div><h4>Снайпер</h4><button type="button" data-job="Снайпер" data-slug="sniper">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-scout"><span>Р</span></div><h4>Разведчик</h4><button type="button" data-job="Разведчик" data-slug="scout">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-tank"><span>Т</span></div><h4>Танкист</h4><button type="button" data-job="Танкист" data-slug="tanker">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-shooter"><span>С</span></div><h4>Стрелок</h4><button type="button" data-job="Стрелок" data-slug="rifleman">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-command"><span>К</span></div><h4>Командир отделения</h4><button type="button" data-job="Командир отделения" data-slug="squad-commander">Подробнее</button></article>
           </div>
         </div>
 
         <div class="vacancy-group" id="rear">
-          <div class="vacancy-group-copy"><p class="eyebrow">Тыл</p><h3>Обеспечение и обслуживание</h3><p>Специальности, необходимые для снабжения, ремонта, перевозок и устойчивой работы подразделений.</p></div>
+          <div class="vacancy-group-copy"><p class="eyebrow">Тыл</p><h3>Обеспечение и обслуживание</h3><p>Тыловые специалисты обеспечивают перевозки, обслуживание техники, ремонт, энергоснабжение и движение материальных средств. Содержание работы зависит от профессии и места назначения.</p><p>Профильное образование или гражданский опыт могут повлиять на подбор должности. Наличие конкретной вакансии подтверждается только при оформлении.</p></div>
           <div class="job-grid" data-category="rear">
-            <article class="job-card"><div class="job-image job-mechanic"><span>М</span></div><h4>Механик-водитель</h4><button type="button" data-job="Механик-водитель">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-welder"><span>СВ</span></div><h4>Сварщик</h4><button type="button" data-job="Сварщик">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-electric"><span>Э</span></div><h4>Электрик</h4><button type="button" data-job="Электрик">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-repair"><span>Р</span></div><h4>Специалист по ремонту</h4><button type="button" data-job="Специалист по ремонту">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-supply"><span>СН</span></div><h4>Специалист снабжения</h4><button type="button" data-job="Специалист снабжения">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-mechanic"><span>М</span></div><h4>Механик-водитель</h4><button type="button" data-job="Механик-водитель" data-slug="mechanic-driver">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-welder"><span>СВ</span></div><h4>Сварщик</h4><button type="button" data-job="Сварщик" data-slug="welder">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-electric"><span>Э</span></div><h4>Электрик</h4><button type="button" data-job="Электрик" data-slug="electrician">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-repair"><span>Р</span></div><h4>Специалист по ремонту</h4><button type="button" data-job="Специалист по ремонту" data-slug="repair-specialist">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-supply"><span>СН</span></div><h4>Специалист снабжения</h4><button type="button" data-job="Специалист снабжения" data-slug="supply-specialist">Подробнее</button></article>
           </div>
         </div>
 
         <div class="vacancy-group" id="women">
-          <div class="vacancy-group-copy"><p class="eyebrow">Для женщин</p><h3>Медицинские специальности</h3><p>Направления для кандидаток с профильным образованием. Требования к квалификации и опыту уточняются индивидуально.</p></div>
+          <div class="vacancy-group-copy"><p class="eyebrow">Для женщин</p><h3>Специальности для женщин</h3><p>Представлены медицинские, операторские, штабные и обеспечивающие направления. Для клинической работы обязательно подходящее медицинское образование и профессиональный допуск.</p><p>Требования к квалификации, опыту и месту службы различаются. До оформления необходимо получить точное название должности и перечень обязанностей.</p></div>
           <div class="job-grid" data-category="women">
-            <article class="job-card"><div class="job-image job-doctor"><span>ВР</span></div><h4>Врач-хирург</h4><button type="button" data-job="Врач-хирург">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-paramedic"><span>Ф</span></div><h4>Фельдшер</h4><button type="button" data-job="Фельдшер">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-nurse"><span>МС</span></div><h4>Медсестра</h4><button type="button" data-job="Медсестра">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-orderly"><span>С</span></div><h4>Санитар</h4><button type="button" data-job="Санитар">Подробнее</button></article>
-            <article class="job-card"><div class="job-image job-instructor"><span>И</span></div><h4>Санинструктор</h4><button type="button" data-job="Санинструктор">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-doctor"><span>В</span></div><h4>Военный врач</h4><button type="button" data-job="Военный врач" data-slug="military-doctor">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-paramedic"><span>Ф</span></div><h4>Фельдшер</h4><button type="button" data-job="Фельдшер" data-slug="paramedic">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-nurse"><span>МС</span></div><h4>Медицинская сестра</h4><button type="button" data-job="Медицинская сестра" data-slug="nurse">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-orderly"><span>С</span></div><h4>Санитар</h4><button type="button" data-job="Санитар" data-slug="orderly">Подробнее</button></article>
+            <article class="job-card"><div class="job-image job-instructor"><span>СИ</span></div><h4>Санитарный инструктор</h4><button type="button" data-job="Санитарный инструктор" data-slug="sanitary-instructor">Подробнее</button></article>
           </div>
         </div>
       </div>
@@ -256,7 +266,7 @@
       <nav aria-label="Навигация в подвале"><a href="#terms">Условия</a><a href="#directions">Направления</a><a href="#vacancies">Вакансии</a><a href="#faq">Вопросы</a></nav>
       <div class="footer-contact"><button class="button button-light" type="button" data-open-modal="callback">Заказать звонок</button><p>Контактные данные и реквизиты будут добавлены перед публикацией.</p></div>
     </div>
-    <div class="container footer-bottom"><span>© <span data-current-year></span>. Все права защищены</span><a href="pages/privacy.html">Политика конфиденциальности</a><a href="pages/personal-data.html">Обработка персональных данных</a></div>
+    <div class="container footer-bottom"><span>© <span data-current-year></span>. Все права защищены</span><a href="pages/privacy.html">Политика конфиденциальности</a><a href="pages/personal-data.html">Обработка персональных данных</a><a href="pages/image-credits.html">Источники фотографий</a></div>
   </footer>
 
   <div class="modal" id="callback-modal" role="dialog" aria-modal="true" aria-labelledby="callback-title" hidden>

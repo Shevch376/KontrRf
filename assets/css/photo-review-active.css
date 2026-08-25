@@ -1,0 +1,182 @@
+/* Only independently verified, attributed images are published in this layer. */
+.hero-art {
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  background-color: #5f778b;
+  background-image: linear-gradient(90deg, rgba(8, 47, 85, .08), rgba(8, 47, 85, .18)), url('../images/photos/direction-region.webp');
+  background-position: center;
+  background-size: cover;
+}
+
+@media (min-width: 761px) {
+  .hero {
+    background: linear-gradient(90deg, #edf4f8 0 50%, #5f778b 50% 100%);
+  }
+}
+
+.hero-copy {
+  width: 46%;
+  max-width: 650px;
+}
+
+.hero h1 {
+  font-size: clamp(52px, 5vw, 78px);
+}
+
+.hero-grid,
+.hero-shield {
+  display: none;
+}
+
+.media-front {
+  background-image: linear-gradient(0deg, rgba(4, 30, 53, .78), rgba(4, 30, 53, .02)), url('../images/photos/soldiers.webp');
+  background-position: center;
+  background-size: cover;
+}
+
+.media-rear {
+  background-image: linear-gradient(0deg, rgba(4, 30, 53, .78), rgba(4, 30, 53, .02)), url('../images/photos/rear.webp');
+  background-position: center;
+  background-size: cover;
+}
+
+.visual-contract {
+  background-image: linear-gradient(0deg, rgba(4, 30, 53, .48), transparent), url('../images/photos/tank-crew.webp');
+}
+
+.visual-women {
+  background-image: linear-gradient(0deg, rgba(4, 30, 53, .48), transparent), url('../images/verified/women-medic.webp');
+}
+
+.visual-region {
+  background-image: linear-gradient(0deg, rgba(4, 30, 53, .48), transparent), url('../images/photos/direction-region.webp');
+}
+
+.visual-border {
+  background-image: linear-gradient(0deg, rgba(4, 30, 53, .48), transparent), url('../images/verified/sapper.webp');
+}
+
+.visual-brigade {
+  background-image: linear-gradient(0deg, rgba(4, 30, 53, .48), transparent), url('../images/verified/brigade.webp');
+}
+
+.direction-visual,
+.job-image {
+  background-position: center;
+  background-size: cover;
+}
+
+.job-driver {
+  background-image: url('../images/photos/rear.webp');
+}
+
+.job-drone {
+  background-image: url('../images/verified/drone.webp');
+}
+
+.job-engineer {
+  background-image: url('../images/verified/sapper.webp');
+}
+
+.job-sniper {
+  background-image: url('../images/verified/sniper.webp');
+}
+
+.job-scout {
+  background-image: url('../images/verified/scout.webp');
+}
+
+.job-tank {
+  background-image: url('../images/photos/tank-crew.webp');
+}
+
+.job-shooter {
+  background-image: url('../images/verified/shooter.webp');
+}
+
+.job-command {
+  background-image: url('../images/photos/soldiers.webp');
+}
+
+.job-mechanic {
+  background-image: url('../images/verified/rear-driver.webp');
+}
+
+.job-supply {
+  background-image: url('../images/verified/rear-supply.webp');
+}
+
+.job-welder {
+  background-image: url('../images/verified/rear-welder.webp');
+}
+
+.job-electric {
+  background-image: url('../images/verified/rear-electric-final.webp');
+}
+
+.job-repair {
+  background-image: url('../images/verified/rear-repair-final.webp');
+}
+
+.job-doctor {
+  background-image: url('../images/verified/women-medic.webp');
+}
+
+.job-paramedic {
+  background-image: url('../images/verified/specialist-medic-6.webp');
+}
+
+.job-nurse {
+  background-image: url('../images/verified/women-formation.webp');
+}
+
+.job-orderly {
+  background-image: url('../images/verified/women-operator.webp');
+}
+
+.job-instructor {
+  background-image: url('../images/verified/specialist-medic-2.webp');
+}
+
+.job-image:after {
+  display: none;
+}
+
+.job-driver span,
+.job-shooter span,
+.job-scout span,
+.job-sniper span,
+.job-tank span,
+.job-command span,
+.job-mechanic span,
+.job-supply span,
+.job-doctor span,
+.job-paramedic span,
+.job-nurse span,
+.job-orderly span,
+.job-drone span,
+.job-engineer span,
+.job-welder span,
+.job-electric span,
+.job-repair span {
+  display: none !important;
+}
+
+.job-instructor span {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .hero-copy {
+    width: 100%;
+    max-width: none;
+  }
+
+  .hero-art {
+    left: 30%;
+    background-position: 58% center;
+  }
+}

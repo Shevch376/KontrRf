@@ -12,6 +12,14 @@ navigation?.querySelectorAll('a').forEach((link) => link.addEventListener('click
   menuButton?.setAttribute('aria-expanded', 'false');
 }));
 
+document.querySelectorAll('.nav-dropdown-toggle').forEach((button) => {
+  button.addEventListener('click', () => {
+    const dropdown = button.closest('.nav-dropdown');
+    const isOpen = dropdown.classList.toggle('open');
+    button.setAttribute('aria-expanded', String(isOpen));
+  });
+});
+
 document.querySelectorAll('[data-current-year]').forEach((node) => {
   node.textContent = new Date().getFullYear();
 });
@@ -53,6 +61,10 @@ document.addEventListener('keydown', (event) => {
 
 document.querySelectorAll('[data-job]').forEach((button) => {
   button.addEventListener('click', () => {
+    if (button.dataset.slug) {
+      window.location.href = `pages/vacancy.html?job=${encodeURIComponent(button.dataset.slug)}`;
+      return;
+    }
     modals.job.querySelector('#job-title').textContent = button.dataset.job;
     openModal(modals.job);
   });
