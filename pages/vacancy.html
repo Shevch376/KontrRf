@@ -14,7 +14,7 @@
     <div class="container header-shell">
       <a class="brand" href="../index.html"><span class="brand-mark">К</span><span class="brand-name">Контрактная<br>служба</span></a>
       <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
-      <nav class="main-nav" id="main-nav"><a href="terms.html">Условия</a><a href="../index.html#directions">Направления</a><div class="nav-dropdown"><button class="nav-dropdown-toggle" type="button">Вакансии <span>⌄</span></button><div class="nav-dropdown-menu"><a href="vacancies.html">Все вакансии</a><a href="vacancies.html#frontline">На передовой</a><a href="vacancies.html#rear">В тылу</a><a href="vacancies.html#women">Для женщин</a></div></div><a href="../index.html#faq">Вопросы</a></nav>
+      <nav class="main-nav" id="main-nav"><a href="terms.html">Условия</a><div class="nav-dropdown"><button class="nav-dropdown-toggle" type="button">Вакансии</button><div class="nav-dropdown-menu"><a href="vacancies.html#frontline">На передовой</a><a href="vacancies.html#rear">В тылу</a></div></div></nav>
       <div class="header-actions"><a class="button button-light" href="../index.html#application">Подать заявку</a></div>
     </div>
   </header>
@@ -23,20 +23,30 @@
       <div class="container">
         <div class="breadcrumbs"><a href="../index.html">Главная</a><span>—</span><a href="vacancies.html">Вакансии</a><span>—</span><span id="vacancy-breadcrumb"></span></div>
         <div class="vacancy-hero-grid">
-          <div><p class="eyebrow" id="vacancy-category"></p><h1 id="vacancy-title"></h1><p class="vacancy-summary" id="vacancy-summary"></p><a class="button button-primary button-large" href="../index.html#application">Узнать о наличии</a></div>
-          <div class="vacancy-facts"><article><span>Возраст</span><strong>18–63 года</strong></article><article><span>Оформление</span><strong>После отбора</strong></article><article><span>Подготовка</span><strong>По специальности</strong></article></div>
+          <div><p class="eyebrow" id="vacancy-category"></p><h1 id="vacancy-title"></h1><p class="vacancy-summary" id="vacancy-summary"></p><p class="vacancy-qualification" id="vacancy-qualification" hidden></p><a class="button button-primary button-large" href="../index.html#application">Узнать о наличии</a></div>
+          <div class="vacancy-facts"><article><strong>от 2 млн ₽</strong><p>Выплаты за подписание контракта с учётом региона оформления</p></article><article><strong>до 10 млн ₽</strong><p>Возможность списания кредитных обязательств при наличии оснований</p></article><article><strong>18–63 года</strong><p id="vacancy-candidate-note">Требования к кандидату уточняются при отборе</p></article></div>
         </div>
+      </div>
+    </section>
+    <section class="vacancy-benefits" aria-label="Выплаты, бонусы и льготы">
+      <div class="container vacancy-benefits-grid">
+        <article><h2>Выплаты:</h2><p>400 000 ₽ — единовременная федеральная выплата</p><p>≈950 000–3 500 000 ₽+ — единовременная региональная выплата</p><p>От 210 000 ₽ — ежемесячное денежное довольствие</p></article>
+        <article><h2>Бонусы:</h2><p>50 000–1 000 000 ₽ — премии за выполнение задач</p><p>До 10 000 000 ₽ — списание долгов по кредитам</p><p>100 000–4 000 000 ₽ — выплаты при ранении</p></article>
+        <article><h2>Льготы:</h2><p>Военная ипотека</p><p>Статус ветерана боевых действий</p><p>Бесплатное медицинское обслуживание</p><p>Льготы на ЖКХ, детские сады и школы</p></article>
       </div>
     </section>
     <section class="vacancy-detail-body">
       <div class="container vacancy-detail-layout">
         <article class="vacancy-article">
-          <section><p class="eyebrow">О специальности</p><h2>Основные задачи</h2><p id="vacancy-intro"></p><ul id="vacancy-duties"></ul></section>
-          <section><p class="eyebrow">Отбор</p><h2>Требования к кандидату</h2><ul id="vacancy-requirements"></ul></section>
-          <section><p class="eyebrow">До назначения</p><h2>Подготовка и допуск</h2><p id="vacancy-training"></p></section>
-          <section><p class="eyebrow">Условия</p><h2>Обеспечение и гарантии</h2><p>Должность, место службы, размер денежного довольствия и доступные меры поддержки определяются при оформлении с учётом назначения и действующих нормативных актов. Конкретные суммы и условия необходимо подтвердить до подписания документов.</p><div class="detail-note">Военнослужащему предоставляется установленное обеспечение, медицинская помощь и предусмотренные законом социальные гарантии. Их состав зависит от статуса и условий прохождения службы.</div></section>
+          <section class="vacancy-work-section"><div><p class="eyebrow">Суть работы</p><h2>Суть работы:</h2><p id="vacancy-intro"></p></div><div><h3>Основные задачи:</h3><ul id="vacancy-duties"></ul></div></section>
+          <section class="vacancy-requirements-section"><div><p class="eyebrow">Отбор</p><h2>Требования к кандидату:</h2></div><ul id="vacancy-requirements"></ul></section>
+          <section><p class="eyebrow">Место и формат</p><h2>Где и как проходит служба</h2><p id="vacancy-service"></p></section>
+          <section><p class="eyebrow">Денежное обеспечение</p><h2>Финансовые условия</h2><p id="vacancy-finance"></p></section>
+          <section><p class="eyebrow">Поддержка</p><h2>Социальные гарантии</h2><p id="vacancy-guarantees"></p></section>
+          <section><p class="eyebrow">До назначения</p><h2>Обучение и карьерный рост</h2><p id="vacancy-training"></p><p id="vacancy-growth"></p></section>
           <section><p class="eyebrow">Порядок оформления</p><h2>Как проходит отбор</h2><ol class="detail-steps"><li><strong>Заявка и консультация</strong><span>Уточняются документы, опыт и интересующая специальность.</span></li><li><strong>Проверка и комиссия</strong><span>Проводятся обязательные процедуры и оценка пригодности.</span></li><li><strong>Подготовка</strong><span>Объём обучения зависит от должности и имеющейся квалификации.</span></li><li><strong>Назначение</strong><span>Итоговая должность закрепляется официальными документами.</span></li></ol></section>
           <section><p class="eyebrow">Важно знать</p><h2>Ответы на вопросы</h2><div class="accordion" id="vacancy-faq"></div></section>
+          <section><p class="eyebrow">Другие варианты</p><h2 id="related-title">Другие вакансии</h2><div class="related-vacancies" id="related-vacancies"></div></section>
         </article>
         <aside class="vacancy-sidebar"><div class="vacancy-side-card"><p class="eyebrow light">Актуальность вакансии</p><h2>Назначение подтверждается после отбора</h2><p>Наличие должности и точные требования зависят от текущей потребности подразделений.</p><a class="button button-light" href="../index.html#application">Оставить заявку</a></div><a class="vacancy-back" href="vacancies.html">← Все вакансии</a></aside>
       </div>

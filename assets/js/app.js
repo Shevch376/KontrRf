@@ -24,6 +24,116 @@ document.querySelectorAll('[data-current-year]').forEach((node) => {
   node.textContent = new Date().getFullYear();
 });
 
+document.querySelectorAll('input[type="tel"]').forEach((input) => {
+  input.addEventListener('input', () => {
+    const digits = input.value.replace(/\D/g, '').replace(/^8/, '7').slice(0, 11);
+    const local = digits.startsWith('7') ? digits.slice(1) : digits;
+    let value = '+7';
+    if (local.length) value += ` (${local.slice(0, 3)}`;
+    if (local.length >= 3) value += ')';
+    if (local.length > 3) value += ` ${local.slice(3, 6)}`;
+    if (local.length > 6) value += `-${local.slice(6, 8)}`;
+    if (local.length > 8) value += `-${local.slice(8, 10)}`;
+    input.value = value;
+  });
+});
+
+document.querySelectorAll('input[type="date"]').forEach((input) => {
+  input.addEventListener('click', () => {
+    input.focus();
+    try {
+      input.showPicker?.();
+    } catch (error) {
+      // Some browsers restrict showPicker; focus still keeps the whole field usable.
+    }
+  });
+});
+
+const jobCatalog = {
+  frontline: [
+    ['driver','Водитель'], ['drone-operator','Оператор БПЛА'], ['sapper','Сапёр'], ['sniper','Снайпер'],
+    ['grenade-launcher','Гранатомётчик'], ['air-defense-operator','Оператор ЗРК'], ['assault-soldier','Штурмовик'], ['scout','Разведчик'],
+    ['rubicon-operator','Оператор подразделения «Рубикон»'], ['tanker','Танкист'], ['tank-division-specialist','Специалист танковой дивизии'], ['rifleman','Стрелок'],
+    ['frontline-paramedic','Фельдшер'], ['cook','Повар'], ['artilleryman','Артиллерист'], ['frontline-surgeon','Врач-хирург'],
+    ['signalman','Связист'], ['frontline-mechanic-driver','Водитель-механик'], ['squad-commander','Командир отделения'], ['staff-instructor','Инструктор штаба']
+  ],
+  rear: [
+    ['rear-driver','Водитель'], ['mechanic-driver','Механик-водитель'], ['auto-mechanic','Автомеханик'], ['fuel-truck-driver','Заправщик'],
+    ['welder','Сварщик'], ['electrician','Электрик'], ['rear-drone-repair','Специалист по ремонту БПЛА'], ['water-supply-specialist','Специалист по водообеспечению'],
+    ['rear-paramedic','Фельдшер'], ['rear-surgeon','Хирург'], ['gumo-specialist','Специалист 12 ГУМО'], ['guard','Сторож'], ['auto-locksmith','Автослесарь']
+  ],
+  women: [
+    ['military-doctor','Врач-хирург'], ['paramedic','Фельдшер'], ['nurse','Медицинская сестра'], ['orderly','Санитар'], ['sanitary-instructor','Санитарный инструктор']
+  ]
+};
+window.jobCatalog = jobCatalog;
+
+const categoryText = {
+  frontline: 'Задачи в составе боевых, инженерных, транспортных и специальных подразделений.',
+  rear: 'Техническое обслуживание, перевозки и обеспечение устойчивой работы подразделений.',
+  women: 'Медицинская помощь в пределах профильного образования и подтверждённой квалификации.'
+};
+
+const photoRoot = window.location.pathname.replace(/\\/g, '/').includes('/pages/') ? '../assets/images/' : 'assets/images/';
+const jobPhotos = {
+  driver: 'example-front/card-02.webp',
+  'drone-operator': 'example-front/drone.webp',
+  sapper: 'verified/sapper.webp',
+  sniper: 'verified/sniper.webp',
+  'grenade-launcher': 'example-front/grenade.webp',
+  'air-defense-operator': 'example-front/air-defense.webp',
+  'assault-soldier': 'example-front/assault.webp',
+  scout: 'example-front/scout.webp',
+  'rubicon-operator': 'example-front/card-10.webp',
+  tanker: 'example-front/card-13.webp',
+  'tank-division-specialist': 'example-front/card-11.webp',
+  rifleman: 'verified/shooter.webp',
+  'frontline-paramedic': 'example-front/card-14.webp',
+  cook: 'example-front/card-15.webp',
+  artilleryman: 'example-front/card-16.webp',
+  'frontline-surgeon': 'example-front/card-17.webp',
+  signalman: 'example-front/card-18.webp',
+  'frontline-mechanic-driver': 'example-front/card-21.webp',
+  'squad-commander': 'example-front/card-20.webp',
+  'staff-instructor': 'photos/staff-instructor.webp',
+  'rear-driver': 'verified/rear-driver.webp',
+  'mechanic-driver': 'verified/rear-repair-final.webp',
+  'auto-mechanic': 'verified/rear-repair-final.webp',
+  'fuel-truck-driver': 'verified/rear-driver.webp',
+  welder: 'photos/welder.webp',
+  electrician: 'verified/rear-electric-final.webp',
+  'rear-drone-repair': 'verified/drone.webp',
+  'water-supply-specialist': 'verified/rear-supply.webp',
+  'rear-paramedic': 'verified/specialist-medic-2.webp',
+  'rear-surgeon': 'verified/specialist-medic-6.webp',
+  'gumo-specialist': 'photos/gumo-specialist.webp',
+  guard: 'verified/brigade.webp',
+  'auto-locksmith': 'verified/rear-repair-final.webp',
+  'military-doctor': 'example-medical/medical-01.webp',
+  paramedic: 'example-medical/medical-04.webp',
+  nurse: 'example-medical/medical-02.webp',
+  orderly: 'example-medical/medical-03.webp',
+  'sanitary-instructor': 'example-medical/medical-05.webp'
+};
+
+const jobImage = (slug, title) => {
+  const source = `${photoRoot}${jobPhotos[slug]}`;
+  return `<div class="job-image" style="background-image:url('${source}')"><img src="${source}" alt="${title}" decoding="async"></div>`;
+};
+
+document.querySelectorAll('.job-grid[data-category], .catalog-section .catalog-job-grid').forEach((grid) => {
+  const category = grid.dataset.category || grid.closest('.catalog-section')?.id;
+  if (!jobCatalog[category]) return;
+  const isCatalog = grid.classList.contains('catalog-job-grid');
+  grid.innerHTML = jobCatalog[category].map(([slug, title], index) => {
+    const qualification = slug === 'driver' ? '<span class="job-qualification">Водитель категорий (A, B, C, D, E)</span>' : '';
+    return isCatalog
+    ? `<article class="catalog-job">${jobImage(slug, title)}<div><h3>${title}</h3>${qualification}<p>${categoryText[category]}</p><a href="vacancy.html?job=${slug}">Подробнее</a></div></article>`
+    : `<article class="job-card">${jobImage(slug, title)}<h4>${title}</h4>${qualification}<button type="button" data-job="${title}" data-slug="${slug}">Подробнее</button></article>`;
+  }
+  ).join('');
+});
+
 const modals = {
   callback: document.querySelector('#callback-modal'),
   document: document.querySelector('#document-modal'),
