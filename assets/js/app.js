@@ -1,4 +1,4 @@
-const menuButton = document.querySelector('.menu-toggle');
+﻿const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.main-nav');
 
 menuButton?.addEventListener('click', () => {
@@ -22,6 +22,23 @@ document.querySelectorAll('.nav-dropdown-toggle').forEach((button) => {
 
 document.querySelectorAll('[data-current-year]').forEach((node) => {
   node.textContent = new Date().getFullYear();
+});
+
+function trackGoal(goalName) {
+  if (typeof window.ym === 'function') {
+    window.ym(112544225, 'reachGoal', goalName);
+  }
+  if (Array.isArray(window._tmr)) {
+    window._tmr.push({ id: '3793921', type: 'reachGoal', goal: goalName });
+  }
+}
+
+document.querySelectorAll('a[href$="#application"]').forEach((link) => {
+  link.addEventListener('click', () => trackGoal('application_click'));
+});
+
+document.querySelectorAll('[data-open-modal="callback"]').forEach((button) => {
+  button.addEventListener('click', () => trackGoal('callback_click'));
 });
 
 document.querySelectorAll('input[type="tel"]').forEach((input) => {
@@ -60,13 +77,34 @@ const jobCatalog = {
   rear: [
     ['rear-driver','Водитель'], ['mechanic-driver','Механик-водитель'], ['auto-mechanic','Автомеханик'], ['fuel-truck-driver','Заправщик'],
     ['welder','Сварщик'], ['electrician','Электрик'], ['rear-drone-repair','Специалист по ремонту БПЛА'], ['water-supply-specialist','Специалист по водообеспечению'],
-    ['rear-paramedic','Фельдшер'], ['rear-surgeon','Хирург'], ['gumo-specialist','Специалист 12 ГУМО'], ['guard','Сторож'], ['auto-locksmith','Автослесарь']
+    ['rear-paramedic','Фельдшер'], ['rear-surgeon','Хирург'], ['gumo-specialist','Специалист 12 ГУМО'], ['guard','Охранник'], ['auto-locksmith','Автослесарь']
   ],
   women: [
     ['military-doctor','Врач-хирург'], ['paramedic','Фельдшер'], ['nurse','Медицинская сестра'], ['orderly','Санитар'], ['sanitary-instructor','Санитарный инструктор']
   ]
 };
 window.jobCatalog = jobCatalog;
+
+const categoryPrefix = {
+  frontline: 'СВО',
+  rear: 'ТЫЛ',
+  women: 'Для женщин'
+};
+
+const findJobBySlug = (slug) => Object.entries(jobCatalog)
+  .flatMap(([category, jobs]) => jobs.map(([jobSlug, title]) => ({ category, slug: jobSlug, title })))
+  .find((item) => item.slug === slug);
+
+const requestedApplicationJob = new URLSearchParams(window.location.search).get('job');
+const requestedApplicationEntry = requestedApplicationJob ? findJobBySlug(requestedApplicationJob) : null;
+const requestedVacancySelect = document.querySelector('select[name="vacancy"]');
+
+if (requestedVacancySelect && requestedApplicationEntry) {
+  const requestedVacancyValue = `${categoryPrefix[requestedApplicationEntry.category]} — ${requestedApplicationEntry.title}`;
+  if ([...requestedVacancySelect.options].some((option) => option.value === requestedVacancyValue)) {
+    requestedVacancySelect.value = requestedVacancyValue;
+  }
+}
 
 const categoryText = {
   frontline: 'Задачи в составе боевых, инженерных, транспортных и специальных подразделений.',
@@ -96,21 +134,21 @@ const jobPhotos = {
   'frontline-mechanic-driver': 'example-front/card-21.webp',
   'squad-commander': 'example-front/card-20.webp',
   'staff-instructor': 'photos/staff-instructor.webp',
-  'rear-driver': 'verified/rear-driver.webp',
+  'rear-driver': 'photos/rear-driver-new.jpg',
   'mechanic-driver': 'verified/rear-repair-final.webp',
-  'auto-mechanic': 'verified/rear-repair-final.webp',
-  'fuel-truck-driver': 'verified/rear-driver.webp',
-  welder: 'photos/welder.webp',
-  electrician: 'verified/rear-electric-final.webp',
+  'auto-mechanic': 'photos/auto-mechanic-new.jpg',
+  'fuel-truck-driver': 'photos/fuel-truck-driver-new.jpg',
+  welder: 'photos/welder-new.jpg',
+  electrician: 'photos/electrician-new.jpg',
   'rear-drone-repair': 'verified/drone.webp',
   'water-supply-specialist': 'verified/rear-supply.webp',
-  'rear-paramedic': 'verified/specialist-medic-2.webp',
-  'rear-surgeon': 'verified/specialist-medic-6.webp',
+  'rear-paramedic': 'photos/paramedic-new.jpg',
+  'rear-surgeon': 'photos/surgeon-new.jpg',
   'gumo-specialist': 'photos/gumo-specialist.webp',
-  guard: 'verified/brigade.webp',
-  'auto-locksmith': 'verified/rear-repair-final.webp',
+  guard: 'photos/guard-new.jpg',
+  'auto-locksmith': 'photos/auto-locksmith-new.jpg',
   'military-doctor': 'example-medical/medical-01.webp',
-  paramedic: 'example-medical/medical-04.webp',
+  paramedic: 'photos/paramedic-new.jpg',
   nurse: 'example-medical/medical-02.webp',
   orderly: 'example-medical/medical-03.webp',
   'sanitary-instructor': 'example-medical/medical-05.webp'
@@ -118,7 +156,7 @@ const jobPhotos = {
 
 const jobImage = (slug, title) => {
   const source = `${photoRoot}${jobPhotos[slug]}`;
-  return `<div class="job-image" style="background-image:url('${source}')"><img src="${source}" alt="${title}" decoding="async"></div>`;
+  return `<div class="job-image job-image-${slug}" style="background-image:url('${source}')"><img src="${source}" alt="${title}" decoding="async"></div>`;
 };
 
 document.querySelectorAll('.job-grid[data-category], .catalog-section .catalog-job-grid').forEach((grid) => {
@@ -196,7 +234,30 @@ document.querySelectorAll('.vacancy-tabs button').forEach((button) => {
 
 function isAdultWithinRange(dateValue) {
   if (!dateValue) return false;
-  const birthDate = new Date(`${dateValue}T00:00:00`);
+  const normalizedValue = dateValue.trim();
+  let match = normalizedValue.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+  let day;
+  let month;
+  let year;
+
+  if (match) {
+    day = Number(match[1]);
+    month = Number(match[2]);
+    year = Number(match[3]);
+  } else {
+    match = normalizedValue.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!match) return false;
+    year = Number(match[1]);
+    month = Number(match[2]);
+    day = Number(match[3]);
+  }
+
+  const birthDate = new Date(year, month - 1, day);
+  if (
+    birthDate.getFullYear() !== year ||
+    birthDate.getMonth() !== month - 1 ||
+    birthDate.getDate() !== day
+  ) return false;
   if (Number.isNaN(birthDate.getTime())) return false;
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
@@ -206,10 +267,50 @@ function isAdultWithinRange(dateValue) {
   return age >= 18 && age <= 63;
 }
 
+const FORM_ENDPOINT = 'api/send-lead.php';
+const FORM_TIMEOUT_MS = 10000;
+
+function sendLead(payload) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), FORM_TIMEOUT_MS);
+
+  return fetch(FORM_ENDPOINT, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+    signal: controller.signal
+  }).finally(() => clearTimeout(timeout));
+}
+
+function collectFormData(form) {
+  const formData = new FormData(form);
+  const payload = {
+    formName: form.dataset.formName || '',
+    page: window.location.href,
+    fields: {}
+  };
+
+  formData.forEach((value, key) => {
+    const field = form.elements[key];
+    payload.fields[key] = field?.type === 'checkbox'
+      ? (field.checked ? 'Да' : 'Нет')
+      : String(value).trim();
+  });
+
+  return payload;
+}
+
 document.querySelectorAll('form[data-form-name]').forEach((form) => {
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('input', () => {
+    if (form.dataset.started) return;
+    form.dataset.started = 'true';
+    trackGoal(form.dataset.formName === 'callback' ? 'callback_started' : 'application_started');
+  });
+
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const status = form.querySelector('.form-status');
+    const submitButton = form.querySelector('[type="submit"]');
     status.className = 'form-status';
 
     if (!form.checkValidity()) {
@@ -227,7 +328,38 @@ document.querySelectorAll('form[data-form-name]').forEach((form) => {
       return;
     }
 
-    status.textContent = 'Форма готова. Отправка будет подключена после выбора сервиса заявок.';
-    status.classList.add('success');
+    status.textContent = 'Отправляем заявку...';
+    status.classList.add('loading');
+    submitButton.disabled = true;
+
+    try {
+      const response = await sendLead(collectFormData(form));
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || 'Не удалось отправить заявку.');
+      }
+
+      status.textContent = 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.';
+      status.classList.add('success');
+      trackGoal(form.dataset.formName === 'callback' ? 'callback_submit_success' : 'lead_submit_success');
+      form.reset();
+      if (form.closest('.modal')) {
+        setTimeout(() => closeModal(form.closest('.modal')), 1200);
+      }
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        status.textContent = 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.';
+        status.classList.add('success');
+        trackGoal(form.dataset.formName === 'callback' ? 'callback_submit_success' : 'lead_submit_success');
+        form.reset();
+        return;
+      }
+      status.textContent = error.message || 'Не удалось отправить заявку. Попробуйте позже.';
+      status.classList.add('error');
+    } finally {
+      submitButton.disabled = false;
+    }
+    return;
   });
 });

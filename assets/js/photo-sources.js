@@ -38,7 +38,7 @@ window.photoSources = {
   "rear-paramedic": ["Presentation of military physicians (2020-12-22) 02.jpg", "Фельдшер"],
   "rear-surgeon": ["Presentation of military physicians (2020-12-22) 06.jpg", "Хирург"],
   "gumo-specialist": ["Railway troops on the construction of BAM-2. July 2022.png", "Специалист 12 ГУМО"],
-  "guard": ["60th anniversary of Guard of Honor Battalion of Russia 10.jpg", "Сторож"],
+  "guard": ["60th anniversary of Guard of Honor Battalion of Russia 10.jpg", "Охранник"],
   "auto-locksmith": ["Russian Navy Admiral Nakhimov Repair 1.jpg", "Автослесарь"],
   "military-doctor": ["Women soldiers of Russia 01.jpg", "Врач-хирург"],
   "paramedic": ["Presentation of military physicians (2020-12-22) 04.jpg", "Фельдшер"],
